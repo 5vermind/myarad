@@ -1,4 +1,5 @@
-import { Card, Grid, Text } from "@nextui-org/react"
+/* eslint-disable no-nested-ternary */
+import { Card, Grid, Loading, Text } from "@nextui-org/react"
 import { useStore } from "src/store/zustandProvider"
 import { OneMabuResponse } from "src/types/mabu"
 import useSWR from "swr"
@@ -10,7 +11,7 @@ export const SelectedMabu = () => {
   )
 
   return selectedId !== "" ? (
-    data && (
+    data ? (
       <Card
         css={{
           bgColor: "rgba(255, 255, 255, 0.72)",
@@ -52,6 +53,8 @@ export const SelectedMabu = () => {
           </Grid.Container>
         </Card.Body>
       </Card>
+    ) : (
+      <Loading />
     )
   ) : (
     <Text h1 css={{ color: "white" }}>
