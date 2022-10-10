@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+dfmabu-firebase-adminsdk.json
+
+.env.local
