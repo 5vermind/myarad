@@ -36,6 +36,10 @@ export const Layout = ({ children }: LayoutProps) => (
         기능 지속적으로 추가중입니다. 건의사항, 오류 제보해주시면
         감사드리겠습니다.
       </Text>
+      <Text>
+        예정) 골든베릴, 이스핀즈, 기계혁명 보주 추가. 장비별 검색, 옵션별 검색,
+        이름으로 검색
+      </Text>
     </Box>
   </Box>
 )
