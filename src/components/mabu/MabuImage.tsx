@@ -18,7 +18,7 @@ export const MabuImage = ({ itemId, itemName }: MabuImageInterface) => {
         width: 100,
         maxWidth: 100,
         borderRadius: 5,
-        bgColor: "rgba(255, 255, 255, 0.72)",
+        bgColor: "rgba(255, 255, 255, 0.3)",
         backdropFilter: "blur(10px)",
       }}
       onClick={() => {
@@ -29,11 +29,14 @@ export const MabuImage = ({ itemId, itemName }: MabuImageInterface) => {
     >
       <Image
         src={`/images/${itemId}.png`}
-        width={60}
-        height={60}
+        width={50}
+        height={50}
         showSkeleton
-        objectFit="fill"
+        objectFit="contain"
         alt={`${itemName} 이미지`}
+        containerCss={{
+          height: 60,
+        }}
       />
       <Text
         css={{

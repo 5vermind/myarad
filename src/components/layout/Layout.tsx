@@ -18,6 +18,7 @@ export const Layout = ({ children }: LayoutProps) => (
     <Box
       css={{
         padding: 20,
+        px: 40,
       }}
     >
       {children}

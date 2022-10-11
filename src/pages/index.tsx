@@ -1,10 +1,9 @@
-import { Container } from "@nextui-org/react"
 import type { NextPage } from "next"
 import Head from "next/head"
 import { LandingPage } from "src/components/landing/LandingPage"
 
 const Home: NextPage = () => (
-  <Container>
+  <>
     <Head>
       <title>던파마부</title>
       <meta name="description" content="던파 마부를 한눈에! " />
@@ -15,7 +14,7 @@ const Home: NextPage = () => (
       <meta property="og:article:author" content="던파마부" />
     </Head>
     <LandingPage />
-  </Container>
+  </>
 )
 
 export default Home

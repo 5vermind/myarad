@@ -14,28 +14,26 @@ export const SelectedMabu = () => {
     data ? (
       <Card
         css={{
-          bgColor: "rgba(255, 255, 255, 0.72)",
-          backdropFilter: "blur(7px)",
-          webkitBackdropFilter: "blur(7px)",
+          bgColor: "rgba(255, 255, 255, 0.5)",
+          backdropFilter: "blur(3.5px)",
+          webkitBackdropFilter: "blur(3.5px )",
           position: "sticky",
           top: 50,
         }}
       >
         <Card.Header>
-          <Text h2>{(data as OneMabuResponse).itemName}</Text>
+          <Text h2>{data.itemName}</Text>
         </Card.Header>
         <Card.Divider />
         <Card.Body>
           <Grid.Container direction="column">
             <Grid css={{ width: "fit-content", alignSelf: "end" }}>
               <Text h3>
-                {(data as OneMabuResponse).slots
-                  .map((slot) => slot.slotName)
-                  .join(", ")}
+                {data.slots.map((slot) => slot.slotName).join(", ")}
               </Text>
             </Grid>
             <Grid>
-              {(data as OneMabuResponse).enchant.map((e, index) => (
+              {data.enchant.map((e, index) => (
                 // eslint-disable-next-line react/no-array-index-key
                 <Text key={`enchant-${index}`}>
                   <Text>+{e.upgrade}</Text>
