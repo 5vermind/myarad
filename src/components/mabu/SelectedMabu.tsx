@@ -17,6 +17,8 @@ export const SelectedMabu = () => {
           bgColor: "rgba(255, 255, 255, 0.72)",
           backdropFilter: "blur(7px)",
           webkitBackdropFilter: "blur(7px)",
+          position: "sticky",
+          top: 50,
         }}
       >
         <Card.Header>
