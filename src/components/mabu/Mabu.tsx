@@ -1,42 +1,46 @@
-import { Grid, Text } from "@nextui-org/react"
-import { Semi } from "./Semi"
-import { Final } from "./Final"
+import { Grid } from "@nextui-org/react"
+import { Suspense } from "react"
+import { useIsMobile } from "src/hooks/useIsMobile"
+import { MabuFloatingButton } from "./MabuFloatingButton"
+import { MabuModal } from "./MabuModal"
+import { MabuSearch } from "./MabuSearch"
 import { SelectedMabu } from "./SelectedMabu"
+import { SelectedMabuSkeleton } from "./SelectedMabuSkeleton"
 
-export const Mabu = () => (
-  <Grid.Container css={{ marginTop: 20 }}>
-    <Grid.Container
-      xs={6}
-      css={{
-        borderRight: "1px solid #eaeaea",
-      }}
-      direction="column"
-    >
-      <Grid.Container>
-        <Grid xs={12}>
-          <Text h3 css={{ color: "white" }}>
-            종결
-          </Text>
-        </Grid>
-        <Final />
+export const Mabu = () => {
+  const isMobile = useIsMobile()
+
+  return (
+    <Grid.Container css={{ marginTop: 20, position: "relative" }}>
+      <Grid.Container
+        direction="column"
+        css={{
+          pr: isMobile ? 0 : 30,
+          w: isMobile ? "100%" : "50%",
+          mw: 768,
+        }}
+      >
+        <Suspense fallback={<SelectedMabuSkeleton />}>
+          <SelectedMabu />
+        </Suspense>
       </Grid.Container>
-      <Grid.Container>
-        <Grid xs={12}>
-          <Text h3 css={{ color: "white" }}>
-            준종결
-          </Text>
-        </Grid>
-        <Semi />
-      </Grid.Container>
+      {!isMobile ? (
+        <Grid.Container
+          xs={6}
+          css={{
+            borderLeft: "1px solid #eaeaea",
+            pl: 30,
+          }}
+          direction="column"
+        >
+          <MabuSearch />
+        </Grid.Container>
+      ) : (
+        <>
+          <MabuFloatingButton />
+          <MabuModal />
+        </>
+      )}
     </Grid.Container>
-    <Grid.Container
-      xs={6}
-      direction="column"
-      css={{
-        pl: 50,
-      }}
-    >
-      <SelectedMabu />
-    </Grid.Container>
-  </Grid.Container>
-)
+  )
+}

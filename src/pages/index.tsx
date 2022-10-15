@@ -1,20 +1,37 @@
 import type { NextPage } from "next"
-import Head from "next/head"
 import { LandingPage } from "src/components/landing/LandingPage"
+import { getMabuFromQuery } from "src/lib/mabu"
+import { SWRConfig } from "swr"
 
-const Home: NextPage = () => (
-  <>
-    <Head>
-      <title>던파마부</title>
-      <meta name="description" content="던파 마부를 한눈에! " />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <meta property="og:title" content="던파마부" />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://dfmabu.vercel.app" />
-      <meta property="og:article:author" content="던파마부" />
-    </Head>
+interface Props {
+  fallback: {
+    [key: string]: any
+  }
+}
+
+const Home: NextPage<Props> = ({ fallback }) => (
+  <SWRConfig value={{ fallback }}>
     <LandingPage />
-  </>
+  </SWRConfig>
 )
 
 export default Home
+
+export const getServerSideProps = async () => {
+  const final = await getMabuFromQuery({
+    grade: "final",
+    itemTypeDetail: "전문직업 재료",
+  })
+  const semi = await getMabuFromQuery({
+    grade: "semi",
+    itemTypeDetail: "전문직업 재료",
+  })
+  return {
+    props: {
+      fallback: {
+        [`/mabu?grade=final&itemTypeDetail=전문직업 재료`]: final,
+        [`/mabu?grade=semi&itemTypeDetail=전문직업 재료`]: semi,
+      },
+    },
+  }
+}

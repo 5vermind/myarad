@@ -1,4 +1,5 @@
 import { Text, Image, Card } from "@nextui-org/react"
+import { useMabuFacade } from "src/hooks/facade/useMabuFacade"
 import { useStore } from "src/store/zustandProvider"
 
 interface MabuImageInterface {
@@ -7,7 +8,8 @@ interface MabuImageInterface {
 }
 
 export const MabuImage = ({ itemId, itemName }: MabuImageInterface) => {
-  const setSelectedId = useStore(({ mabuActions }) => mabuActions.setSelectedId)
+  const { setSelectedId, closeMabuModal } = useMabuFacade()
+  const open = useStore(({ mabu }) => mabu.modalOpen)
 
   return (
     <Card
@@ -21,8 +23,11 @@ export const MabuImage = ({ itemId, itemName }: MabuImageInterface) => {
         bgColor: "rgba(255, 255, 255, 0.3)",
         backdropFilter: "blur(10px)",
       }}
-      onClick={() => {
+      onPress={() => {
         setSelectedId(itemId)
+        if (open) {
+          closeMabuModal()
+        }
       }}
       variant="bordered"
       isPressable

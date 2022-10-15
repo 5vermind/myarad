@@ -31,10 +31,7 @@ module.exports = {
     "react/require-default-props": "off",
     "no-param-reassign": [
       "error",
-      {
-        props: true,
-        ignorePropertyModificationsForRegex: ["^draft$", "Draft$"],
-      },
+      { props: true, ignorePropertyModificationsForRegex: ["^draft"] },
     ],
     "react/function-component-definition": [
       "error",

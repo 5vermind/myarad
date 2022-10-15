@@ -8,3 +8,7 @@ export const theme = createTheme({
     },
   },
 })
+
+export const COLORS = {
+  primary: "#0072F5",
+}

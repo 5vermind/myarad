@@ -1,5 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { Card, Grid, Loading, Text } from "@nextui-org/react"
+import { compressStatus } from "src/lib/util"
 import { useStore } from "src/store/zustandProvider"
 import { OneMabuResponse } from "src/types/mabu"
 import useSWR from "swr"
@@ -14,11 +15,12 @@ export const SelectedMabu = () => {
     data ? (
       <Card
         css={{
-          bgColor: "rgba(255, 255, 255, 0.5)",
+          bgColor: "rgba(255, 255, 255, 0.3)",
           backdropFilter: "blur(3.5px)",
-          webkitBackdropFilter: "blur(3.5px )",
+          webkitBackdropFilter: "blur(3.5px)",
           position: "sticky",
           top: 50,
+          maxH: 800,
         }}
       >
         <Card.Header>
@@ -37,8 +39,17 @@ export const SelectedMabu = () => {
                 // eslint-disable-next-line react/no-array-index-key
                 <Text key={`enchant-${index}`}>
                   <Text>+{e.upgrade}</Text>
+                  {e.explain ?? ""}
+                  {e.reinforceSkill
+                    ? e.reinforceSkill.map(
+                        (job) =>
+                          `${job.jobName} ${job.skills.map(
+                            (skill) => `${skill.name} +${skill.value}`
+                          )} `
+                      )
+                    : ""}
                   {e.status ? (
-                    e.status.map((s, statusIndex) => (
+                    compressStatus(e.status).map((s, statusIndex) => (
                       // eslint-disable-next-line react/no-array-index-key
                       <Text key={`enchant-${index}-${statusIndex}`}>
                         {s.name} +{s.value}

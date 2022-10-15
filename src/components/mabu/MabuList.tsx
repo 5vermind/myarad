@@ -3,12 +3,18 @@ import { MabuResponse } from "src/types/mabu"
 import useSWR from "swr"
 import { MabuImage } from "./MabuImage"
 
-export const Semi = () => {
-  const { data } = useSWR<MabuResponse>("/mabu?grade=semi")
+interface MabuListProps {
+  type: "final" | "semi"
+}
+
+export const MabuList = ({ type }: MabuListProps) => {
+  const { data } = useSWR<MabuResponse>(
+    `/mabu?grade=${type}&itemTypeDetail=전문직업 재료`
+  )
 
   return data ? (
     <>
-      {(data as MabuResponse).map((mabu) => (
+      {data.map((mabu) => (
         <MabuImage
           itemId={mabu.itemId}
           key={mabu.itemId}

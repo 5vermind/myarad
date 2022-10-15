@@ -5,4 +5,5 @@ import { stateCreator } from "./utils"
 export const createMabuSlice: StateCreator<MabuSlice> = (set) =>
   stateCreator<MabuSlice>("mabu", {
     selectedId: "",
+    modalOpen: false,
   })(set)

@@ -6,8 +6,14 @@ import { get } from "src/lib/fetcher"
 import { StoreProvider, useCreateStore } from "src/store/zustandProvider"
 import "src/style/global.css"
 import { theme } from "src/style/theme"
+import { DefaultSeo } from "next-seo"
+import { DEFAULT_SEO } from "src/lib/seo"
+import { Store } from "src/types/store"
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({
+  Component,
+  pageProps,
+}: AppProps<{ initialZustandState: Store }>) => {
   const createStore = useCreateStore(pageProps.initialZustandState)
 
   return (
@@ -17,8 +23,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           value={{
             fetcher: get,
             revalidateOnFocus: false,
+            suspense: true,
           }}
         >
+          <DefaultSeo {...DEFAULT_SEO} />
           <Layout>
             <Component {...pageProps} />
           </Layout>
@@ -29,3 +37,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 }
 
 export default MyApp
+
+export const getServerSideProps = async () => ({
+  props: {
+    initialZustandState: {
+      mabu: {
+        selectedId: "",
+      },
+    },
+  },
+})
