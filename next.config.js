@@ -10,6 +10,9 @@ const nextConfig = {
 
     return config
   },
+  images: {
+    minimumCacheTTL: 60,
+  },
 }
 
 module.exports = nextConfig
