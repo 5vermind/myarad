@@ -23,7 +23,7 @@ export const MabuSearch = () => {
           <MabuList type="final" />
         </Suspense>
       </Grid.Container>
-      <Grid.Container
+      {/* <Grid.Container
         css={{
           maxW: "calc(100vw - 40px)",
         }}
@@ -36,7 +36,7 @@ export const MabuSearch = () => {
         <Suspense fallback="i">
           <MabuList type="semi" />
         </Suspense>
-      </Grid.Container>
+      </Grid.Container> */}
     </>
   )
 }

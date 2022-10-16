@@ -1,15 +1,27 @@
 import { Text, Image, Card } from "@nextui-org/react"
+import { getDownloadURL, ref } from "firebase/storage"
+import { useEffect, useState } from "react"
 import { useMabuFacade } from "src/hooks/facade/useMabuFacade"
+import { storage } from "src/lib/firebase"
 import { useStore } from "src/store/zustandProvider"
+import { Skeleton } from "../common/Skeleton"
 
-interface MabuImageInterface {
+interface MabuCardProps {
   itemId: string
   itemName: string
 }
 
-export const MabuImage = ({ itemId, itemName }: MabuImageInterface) => {
+export const MabuCard = ({ itemId, itemName }: MabuCardProps) => {
   const { setSelectedId, closeMabuModal } = useMabuFacade()
   const open = useStore(({ mabu }) => mabu.modalOpen)
+  const [src, setSrc] = useState<string>("")
+
+  useEffect(() => {
+    ;(async () => {
+      const image = await getDownloadURL(ref(storage, `${itemId}.png`))
+      setSrc(image)
+    })()
+  }, [itemId])
 
   return (
     <Card
@@ -32,17 +44,28 @@ export const MabuImage = ({ itemId, itemName }: MabuImageInterface) => {
       variant="bordered"
       isPressable
     >
-      <Image
-        src={`/images/${itemId}.png`}
-        width={50}
-        height={50}
-        showSkeleton
-        objectFit="contain"
-        alt={`${itemName} 이미지`}
-        containerCss={{
-          height: 60,
-        }}
-      />
+      {src ? (
+        <Image
+          src={src}
+          width={50}
+          height={50}
+          showSkeleton
+          objectFit="contain"
+          alt={`${itemName} 이미지`}
+          containerCss={{
+            height: 60,
+          }}
+        />
+      ) : (
+        <Skeleton
+          css={{
+            width: 50,
+            height: 50,
+            alignSelf: "center",
+            my: 5,
+          }}
+        />
+      )}
       <Text
         css={{
           overflow: "hidden",

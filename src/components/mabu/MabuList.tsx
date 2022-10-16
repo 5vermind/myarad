@@ -1,7 +1,7 @@
 import { Loading } from "@nextui-org/react"
 import { MabuResponse } from "src/types/mabu"
 import useSWR from "swr"
-import { MabuImage } from "./MabuImage"
+import { MabuCard } from "./MabuCard"
 
 interface MabuListProps {
   type: "final" | "semi"
@@ -15,10 +15,10 @@ export const MabuList = ({ type }: MabuListProps) => {
   return data ? (
     <>
       {data.map((mabu) => (
-        <MabuImage
+        <MabuCard
           itemId={mabu.itemId}
-          key={mabu.itemId}
           itemName={mabu.itemName}
+          key={mabu.itemId}
         />
       ))}
     </>
