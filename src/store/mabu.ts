@@ -6,4 +6,5 @@ export const createMabuSlice: StateCreator<MabuSlice> = (set) =>
   stateCreator<MabuSlice>("mabu", {
     selectedId: "",
     modalOpen: false,
+    slotId: "JACKET",
   })(set)

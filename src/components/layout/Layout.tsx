@@ -15,6 +15,11 @@ export const Layout = ({ children }: LayoutProps) => (
     }}
   >
     <Topbar />
+    {/* <Image
+      src="/maxim-berg-lnvpji4fC3c-unsplash.jpg"
+      layout="fill"
+      alt="background"
+    /> */}
     <Box
       css={{
         padding: 20,
@@ -25,6 +30,8 @@ export const Layout = ({ children }: LayoutProps) => (
     </Box>
     <Box
       css={{
+        position: "sticky",
+        bottom: 0,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -38,8 +45,7 @@ export const Layout = ({ children }: LayoutProps) => (
         감사드리겠습니다.
       </Text>
       <Text>
-        예정) 골든베릴, 이스핀즈, 기계혁명 보주 추가. 장비별 검색, 옵션별 검색,
-        이름으로 검색
+        예정) 골든베릴, 이스핀즈, 기계혁명 보주 추가. 옵션별 검색, 이름으로 검색
       </Text>
     </Box>
   </Box>

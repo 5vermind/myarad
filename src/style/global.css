@@ -1,5 +1,6 @@
 body {
-	background: url('/maxim-berg-lnvpji4fC3c-unsplash.jpg') no-repeat center center fixed;
+	/* background: url('/maxim-berg-lnvpji4fC3c-unsplash.jpg') no-repeat center center fixed; */
+	background-color: #e9e9e9;
 	min-height: 100vh;
 }
 

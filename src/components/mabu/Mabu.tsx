@@ -1,9 +1,11 @@
 import { Grid } from "@nextui-org/react"
 import { Suspense } from "react"
 import { useIsMobile } from "src/hooks/useIsMobile"
+import { Box } from "../common/Box"
 import { MabuFloatingButton } from "./MabuFloatingButton"
 import { MabuModal } from "./MabuModal"
 import { MabuSearch } from "./MabuSearch"
+import { MabuSelect } from "./MabuSelect"
 import { SelectedMabu } from "./SelectedMabu"
 import { SelectedMabuSkeleton } from "./SelectedMabuSkeleton"
 
@@ -25,16 +27,19 @@ export const Mabu = () => {
         </Suspense>
       </Grid.Container>
       {!isMobile ? (
-        <Grid.Container
-          xs={6}
+        <Box
           css={{
-            borderLeft: "1px solid #eaeaea",
+            display: "flex",
+            flexDirection: "column",
+            borderLeft: "1px solid rgb(108, 122, 137)",
             pl: 30,
+            width: "50%",
+            gap: "16px",
           }}
-          direction="column"
         >
+          <MabuSelect />
           <MabuSearch />
-        </Grid.Container>
+        </Box>
       ) : (
         <>
           <MabuFloatingButton />

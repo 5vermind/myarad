@@ -12,19 +12,21 @@ export const MabuFloatingButton = () => {
         position: "fixed",
         bottom: 20,
         right: 20,
-        width: 40,
-        height: 40,
+        width: 80,
+        height: 80,
         display: "flex",
         justifyContent: "center",
         backdropFilter: "blur(3.5px)",
         webkitBackdropFilter: "blur(3.5px )",
         backgroundColor: `${COLORS.primary}8D`,
+        borderRadius: 50,
       }}
       auto
       icon={
         <ChevronUp
           set="broken"
           style={{ position: "static", color: "white" }}
+          size="xlarge"
         />
       }
       onPress={openMabuModal}

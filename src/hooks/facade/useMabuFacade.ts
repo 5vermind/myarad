@@ -3,7 +3,7 @@ import { useStore } from "src/store/zustandProvider"
 import shallow from "zustand/shallow"
 
 export const useMabuFacade = () => {
-  const { setSelectedId, setModalOpen } = useStore(
+  const { setSelectedId, setModalOpen, setSlotId } = useStore(
     ({ mabuActions }) => ({ ...mabuActions }),
     shallow
   )
@@ -20,5 +20,6 @@ export const useMabuFacade = () => {
     openMabuModal,
     closeMabuModal,
     setSelectedId,
+    setSlotId,
   }
 }

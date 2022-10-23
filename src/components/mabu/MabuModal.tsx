@@ -2,6 +2,7 @@ import { Button, Modal } from "@nextui-org/react"
 import { useMabuFacade } from "src/hooks/facade/useMabuFacade"
 import { useStore } from "src/store/zustandProvider"
 import { MabuSearch } from "./MabuSearch"
+import { MabuSelect } from "./MabuSelect"
 
 export const MabuModal = () => {
   const open = useStore(({ mabu }) => mabu.modalOpen)
@@ -20,6 +21,9 @@ export const MabuModal = () => {
       scroll
       preventClose
     >
+      <Modal.Header>
+        <MabuSelect />
+      </Modal.Header>
       <Modal.Body
         css={{
           minWidth: 300,
