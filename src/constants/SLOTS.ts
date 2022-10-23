@@ -116,7 +116,7 @@ export const SLOTS_NAME: {
   PANTS: "하의",
   SHOES: "신발",
   SHOULDER: "머리어깨",
-  WAIST: "벨트",
+  WAIST: "허리",
   EARRING: "귀걸이",
   MAGIC_STON: "마법석",
   RING: "반지",
