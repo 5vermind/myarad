@@ -1,4 +1,6 @@
+/* eslint-disable no-nested-ternary */
 import { Loading } from "@nextui-org/react"
+import { useStore } from "src/store/zustandProvider"
 import { MabuResponse } from "src/types/mabu"
 import useSWR from "swr"
 import { MabuCard } from "./MabuCard"
@@ -8,21 +10,25 @@ interface MabuListProps {
 }
 
 export const MabuList = ({ type }: MabuListProps) => {
+  const slotId = useStore(({ mabu }) => mabu.slotId)
   const { data } = useSWR<MabuResponse>(
-    `/mabu?grade=${type}&itemTypeDetail=전문직업 재료`
+    slotId &&
+      `/mabu?grade=${type}&itemTypeDetail=전문직업 재료&slotId=${slotId}`
   )
 
-  return data ? (
-    <>
-      {data.map((mabu) => (
-        <MabuCard
-          itemId={mabu.itemId}
-          itemName={mabu.itemName}
-          key={mabu.itemId}
-        />
-      ))}
-    </>
-  ) : (
-    <Loading />
-  )
+  return slotId ? (
+    data ? (
+      <>
+        {data.map((mabu) => (
+          <MabuCard
+            itemId={mabu.itemId}
+            itemName={mabu.itemName}
+            key={mabu.itemId}
+          />
+        ))}
+      </>
+    ) : (
+      <Loading />
+    )
+  ) : null
 }

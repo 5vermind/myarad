@@ -15,12 +15,13 @@ export const SelectedMabu = () => {
     data ? (
       <Card
         css={{
-          bgColor: "rgba(255, 255, 255, 0.3)",
-          backdropFilter: "blur(3.5px)",
-          webkitBackdropFilter: "blur(3.5px)",
+          // bgColor: "rgba(255, 255, 255, 0.3)",
+          // backdropFilter: "blur(3.5px)",
+          // webkitBackdropFilter: "blur(3.5px)",
           position: "sticky",
           top: 50,
           maxH: 800,
+          boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
         }}
       >
         <Card.Header>
@@ -68,8 +69,6 @@ export const SelectedMabu = () => {
       <Loading />
     )
   ) : (
-    <Text h1 css={{ color: "white" }}>
-      마부를 골라보세요
-    </Text>
+    <Text h1>마부를 골라보세요</Text>
   )
 }

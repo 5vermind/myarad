@@ -4,6 +4,7 @@ import {
   getDocs,
   query as DBQuery,
 } from "firebase/firestore"
+import { SlotId, SLOTS_NAME } from "src/constants/SLOTS"
 import { db } from "./firebase"
 
 export const getMabuFromQuery = async (
@@ -13,7 +14,12 @@ export const getMabuFromQuery = async (
 ) => {
   const mabuRef = collection(db, "mabu")
   const queryArray = Object.entries(query).map(([key, value]) =>
-    where(key, "==", value)
+    key === "slotId"
+      ? where("slots", "array-contains", {
+          slotId: value,
+          slotName: SLOTS_NAME[value as SlotId],
+        })
+      : where(key, "==", value)
   )
   const getOnlyCard = DBQuery.apply(null, [mabuRef, ...queryArray])
   const mabuSnapshot = await getDocs(getOnlyCard)
