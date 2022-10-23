@@ -1,6 +1,6 @@
 export const DEFAULT_SEO = {
   title: "던파 마법부여",
-  description: "던전 앤 파이터 마법부여 사이트",
+  description: "던전앤 파이터 마법부여를 한눈에!",
   cononical: "https://dfmabu.vercel.app",
   openGraph: {
     type: "website",
@@ -10,7 +10,7 @@ export const DEFAULT_SEO = {
     site_name: "던파 마법부여",
     images: [
       {
-        url: "/images/46961331821f0e4ddf4960fd1c69b67e.png",
+        url: "/public/images/46961331821f0e4ddf4960fd1c69b67e.png",
         width: 200,
         height: 200,
         alt: "사무치는 냉룡 스피라찌",
