@@ -1,7 +1,5 @@
 import { Dropdown } from "@nextui-org/react"
-import { useState } from "react"
 import {
-  SlotType,
   SLOT_TYPE,
   isSlotType,
   SLOTS,
@@ -11,12 +9,17 @@ import {
 } from "src/constants/SLOTS"
 import { useMabuFacade } from "src/hooks/facade/useMabuFacade"
 import { useStore } from "src/store/zustandProvider"
+import shallow from "zustand/shallow"
 import { Box } from "../common/Box"
 
 export const MabuSelect = () => {
-  const [slotType, setSlotType] = useState<SlotType>("armour")
-  const slotId = useStore(({ mabu }) => mabu.slotId)
-  const { setSlotId } = useMabuFacade()
+  const [slotId, slotType] = useStore(
+    ({ mabu }) => [mabu.slotId, mabu.slotType],
+    shallow
+  )
+  const { setSlotId, setSlotType } = useMabuFacade()
+
+  console.log(SLOTS[slotType], slotId)
 
   return (
     <Box css={{ height: 40 }}>
@@ -61,7 +64,7 @@ export const MabuSelect = () => {
                   slotId: SlotId
                   slotName: string
                 }[]
-              ).filter((i) => i.slotId === slotId)[0].slotName
+              ).filter((i) => i.slotId === slotId)[0]?.slotName
             }
           </Dropdown.Button>
           <Dropdown.Menu
